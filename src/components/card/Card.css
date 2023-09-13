@@ -1,0 +1,13 @@
+.card {
+    display: inline-block;
+    width: 150px;
+    height: 200px;
+    box-shadow: 0px 0px 10px #CCC;
+    margin: 10px;
+    text-align: center;
+}
+
+.card > div:first-child {
+    height: 40px;
+    background-color: #DDD6;
+}
