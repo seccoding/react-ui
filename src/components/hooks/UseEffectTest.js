@@ -24,6 +24,11 @@ export default function EffectComponent() {
         실행되는 함수 입니다.`)
     }, [name]) // Lifecycle: componentDidUpdate
 
+    useEffect(() => {
+        console.log(`이 함수는 컴포넌트의 age, address, memberData state 중
+        하나라도 변경이 되었을 때 실행되는 함수입니다.`)
+    }, [age, address, memberData]) // Lifecycle: componentDidUpdate
+
     function changeName() {
         setName(Math.random())
     }
