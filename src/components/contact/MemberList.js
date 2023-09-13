@@ -15,7 +15,9 @@ export default function MemberList() {
             address: addressRef.current.value 
         })
         setMemberData(data)
-
+        nameRef.current.value = ""
+        ageRef.current.value = ""
+        addressRef.current.value = ""
     }
 
     return (
