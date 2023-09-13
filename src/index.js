@@ -12,11 +12,12 @@ import StepperApp from './components/state/StepperApp';
 import ContactApp from './components/contact/ContactApp';
 import InlineApp from './components/style/InlineApp';
 import RefComponent from './components/hooks/UseRefTest';
+import EffectComponent from './components/hooks/UseEffectTest';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ContactApp />
+    <EffectComponent />
   </React.StrictMode>
 );
 
