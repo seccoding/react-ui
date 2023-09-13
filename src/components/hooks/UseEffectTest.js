@@ -13,6 +13,12 @@ export default function EffectComponent() {
     }) // 의존배열 파라미터가 없다면 컴포넌트가 갱신될때마다 실행된다.
        // Lifecycle: componentDidMount, componentDidUpdate
 
+    useEffect(() => {
+        console.log(`이 함수는 컴포넌트가 
+        처음으로 만들어질 때에만 실행되는 함수입니다.`)
+    }, []) // 의존 배열 파라미터가 [] 라면 컴포넌트가 만들어 질 때만 실행된다.
+           // Lifecycle: componentDidMount
+
     function changeName() {
         setName(Math.random())
     }
