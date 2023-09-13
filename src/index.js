@@ -10,11 +10,12 @@ import PersonApp from './components/events/props/PersonApp';
 import InputApp from './components/state/InputApp';
 import StepperApp from './components/state/StepperApp';
 import ContactApp from './components/contact/ContactApp';
+import InlineApp from './components/style/InlineApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <ContactApp />
+    <InlineApp />
   </React.StrictMode>
 );
 
