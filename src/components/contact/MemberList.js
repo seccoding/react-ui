@@ -1,48 +1,35 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 export default function MemberList() {
-
     const [memberData, setMemberData] = useState([])
-    const [name, setName] = useState("")
-    const [age, setAge] = useState("")
-    const [address, setAddress] = useState("")
 
-    function changeName(event) {
-        setName(event.target.value)
-    }
-
-    function changeAge(event) {
-        setAge(event.target.value)
-    }
-
-    function changeAddress(event) {
-        setAddress(event.target.value)
-    } 
-    // Test
+    const nameRef = useRef()
+    const ageRef = useRef()
+    const addressRef = useRef()
 
     function save() {
         let data = [...memberData]
-        data.push({username: name, age, address})
+        data.push({
+            username: nameRef.current.value, 
+            age: ageRef.current.value, 
+            address: addressRef.current.value })
         setMemberData(data)
 
-        setName("")
-        setAge("")
-        setAddress("")
     }
 
     return (
         <div>
             <div>
                 <label htmlFor="name">이름:</label>
-                <input type="text" id="name" value={name} onChange={event => changeName(event)}/>
+                <input type="text" id="name" ref={nameRef} />
             </div>
             <div>
                 <label htmlFor="age">나이:</label>
-                <input type="text" id="age" value={age} onChange={event => changeAge(event)} />
+                <input type="text" id="age" ref={ageRef} />
             </div>
             <div>
                 <label htmlFor="address">주소:</label>
-                <input type="text" id="address" value={address} onChange={event => changeAddress(event)} />
+                <input type="text" id="address" ref={addressRef} />
             </div>
             <div>
                 <button onClick={() => save()}>저장</button>

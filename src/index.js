@@ -16,7 +16,7 @@ import RefComponent from './components/hooks/UseRefTest';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <RefComponent />
+    <ContactApp />
   </React.StrictMode>
 );
 
