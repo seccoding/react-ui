@@ -17,7 +17,7 @@ export default function MemberList() {
 
     function changeAddress(event) {
         setAddress(event.target.value)
-    }
+    } 
 
     function save() {
         let data = [...memberData]
