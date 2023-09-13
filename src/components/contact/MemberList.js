@@ -12,7 +12,8 @@ export default function MemberList() {
         data.push({
             username: nameRef.current.value, 
             age: ageRef.current.value, 
-            address: addressRef.current.value })
+            address: addressRef.current.value 
+        })
         setMemberData(data)
 
     }
