@@ -20,8 +20,36 @@ export default function JsonPlaceholder() {
              }) // 실패 Case (요청이 실패했다. 응답이 제대로 오지 않았거나 응답에 에러 메시지가 포함되어 있다.)
     }, [])
 
+    if (status == 404) {
+        return (
+            <div>
+                <Buttons /> 
+                URL이 올바르지 않습니다.
+            </div>
+        );
+    }
+    else {
+        return (
+            <div>
+                <Buttons /> 
+                {
+                    posts.map(post => <div key={post.id}>{post.title}</div>)
+                }
+            </div>
+        );
+    }
+}
+
+function Buttons() {
+
     return (
-        <div></div>
+        <div>
+            <button>조회</button>
+            <button>한건 조회</button>
+            <button>등록</button>
+            <button>수정</button>
+            <button>삭제</button>
+        </div>
     );
 
 }
