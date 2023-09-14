@@ -7,7 +7,7 @@ export const TodoReducer = function(state, action) {
             item: action.payload, // TODO 명
             iscomplete: false
         }
-        
+
         return {
             count: state.count + 1,
             todos: [...state.todos, newTodoItem],
@@ -18,7 +18,7 @@ export const TodoReducer = function(state, action) {
         }
     }
     else if (type == "delete-item") {
-
+        
     }
     else if (type == "complete") {
 
