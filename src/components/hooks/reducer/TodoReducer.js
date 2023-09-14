@@ -18,7 +18,18 @@ export const TodoReducer = function(state, action) {
         }
     }
     else if (type == "delete-item") {
-        
+        const items = {
+            count: state.count - 1,
+            todos: state.todos.filter((todo) => todo.id != action.payload)
+        }
+
+        return {
+            ...items, 
+            completeTodoCount: items
+                                 .todos
+                                 .filter((todo) => todo.isComplete)
+                                 .length
+        }
     }
     else if (type == "complete") {
 
