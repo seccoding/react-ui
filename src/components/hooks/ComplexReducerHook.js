@@ -30,8 +30,8 @@ export default function ComplexReducerHook() {
                             <TodoItem key={value.id}
                                       id={value.id}
                                       item={value.item}
-                                      isComplete={value.isComplete}/>
-                                      )
+                                      isComplete={value.isComplete}
+                                      dispatch={dispatch} />)
                 }
             </div>
         </div>
@@ -40,12 +40,14 @@ export default function ComplexReducerHook() {
 }
 
 
-function TodoItem( { id, item, isComplete } ) {
+function TodoItem( { id, item, isComplete, dispatch } ) {
     return (
         <div>
             <input type="checkbox" 
                    value={id} 
+                   id={id}
                    checked={isComplete}
+                   onChange={() => dispatch({type: "complete", payload: id })}
                    />
             <label htmlFor={id}>{item}</label>
             <span>🗑</span>
