@@ -13,12 +13,13 @@ import ContactApp from './components/contact/ContactApp';
 import InlineApp from './components/style/InlineApp';
 import RefComponent from './components/hooks/UseRefTest';
 import EffectComponent from './components/hooks/UseEffectTest';
+import ReducerComponent from './components/hooks/ReducerComponent';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  // <React.StrictMode>
-    <EffectComponent />
-  // </React.StrictMode>
+   <React.StrictMode>
+    <ReducerComponent />
+   </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
