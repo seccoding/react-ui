@@ -5,7 +5,7 @@ export const TodoReducer = function(state, action) {
         const newTodoItem = {
             id: Date.now(),
             item: action.payload, // TODO 명
-            iscomplete: false
+            isComplete: false
         }
 
         return {
@@ -32,7 +32,23 @@ export const TodoReducer = function(state, action) {
         }
     }
     else if (type == "complete") {
+        const items = {
+            count: state.count,
+            todos: state.todos.map((item) => {
+                if (item.id == action.payload) {
+                    return {...item, isComplete: !item.isComplete}
+                }
+                return item
+            })
+        }
 
+        return {
+            ...items, 
+            completeTodoCount: items
+                                 .todos
+                                 .filter((todo) => todo.isComplete)
+                                 .length
+        }
     }
     else {
         return state
