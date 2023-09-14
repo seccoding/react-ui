@@ -45,6 +45,12 @@ export default function ComplexReducerHook() {
 
 
 function TodoItem( { id, item, isComplete, dispatch } ) {
+
+    const itemStyle = {
+        color: !isComplete ? "#333" : "#CCC",
+        textDecoration: !isComplete ? "none" : "line-through"
+    }
+
     return (
         <div>
             <input type="checkbox" 
@@ -53,7 +59,7 @@ function TodoItem( { id, item, isComplete, dispatch } ) {
                    checked={isComplete}
                    onChange={() => dispatch({type: "complete", payload: id })}
                    />
-            <label htmlFor={id}>{item}</label>
+            <label htmlFor={id} style={itemStyle}>{item}</label>
             <span onClick={() => dispatch({type: "delete-item", payload: id})}>🗑</span>
         </div>
     );
