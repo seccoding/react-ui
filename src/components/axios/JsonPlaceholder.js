@@ -3,21 +3,27 @@ import { useEffect, useState } from "react";
 
 export default function JsonPlaceholder() {
 
+    const [isLoad, setIsLoad] = useState(false)
+
     const [posts, setPosts] = useState([])
     const [status, setStatus] = useState(0)
 
     axios.interceptors.request.use((config) => {
         console.log(config)
+        setIsLoad(true)
         return config
     }, (error) => {
         console.log(error)
+        setIsLoad(false)
         return Promise.reject(error)
     })
     axios.interceptors.response.use((response) => {
         console.log(response)
+        setIsLoad(false)
         return response
     }, (error) => {
         console.log(error)
+        setIsLoad(false)
         return Promise.reject(error)
     })
 
@@ -88,6 +94,7 @@ export default function JsonPlaceholder() {
     if (status == 404) {
         return (
             <div>
+                { isLoad ? <Spinner /> : <></> }
                 <Buttons getAllPosts={getAllPosts} 
                          getOnePost={getOnePost}
                          addNewPost={addNewPost} /> 
@@ -98,6 +105,7 @@ export default function JsonPlaceholder() {
     else {
         return (
             <div>
+                { isLoad ? <Spinner /> : <></> }
                 <Buttons getAllPosts={getAllPosts} 
                          getOnePost={getOnePost}
                          addNewPost={addNewPost} /> 
