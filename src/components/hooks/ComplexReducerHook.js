@@ -19,7 +19,11 @@ export default function ComplexReducerHook() {
 
             <div>
                 <input type="text" ref={todoRef} />
-                <button onClick={() => dispatch({type: "add-item", payload: todoRef.current.value})}>등록</button>
+                <button onClick={() => {
+                    dispatch({type: "add-item", payload: todoRef.current.value})
+                    todoRef.current.value = ""
+                    todoRef.current.focus()
+                }}>등록</button>
             </div>
 
             <div>
@@ -50,7 +54,7 @@ function TodoItem( { id, item, isComplete, dispatch } ) {
                    onChange={() => dispatch({type: "complete", payload: id })}
                    />
             <label htmlFor={id}>{item}</label>
-            <span>🗑</span>
+            <span onClick={() => dispatch({type: "delete-item", payload: id})}>🗑</span>
         </div>
     );
 }
