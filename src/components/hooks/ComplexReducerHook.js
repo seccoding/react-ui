@@ -21,7 +21,34 @@ export default function ComplexReducerHook() {
                 <input type="text" ref={todoRef} />
                 <button onClick={() => dispatch({type: "add-item", payload: todoRef.current.value})}>등록</button>
             </div>
+
+            <div>
+                {
+                    todoItems.count == 0 ?
+                        <div>등록된 할일이 없습니다.</div> : 
+                        todoItems.todos.map((value) => 
+                            <TodoItem key={value.id}
+                                      id={value.id}
+                                      item={value.item}
+                                      isComplete={value.isComplete}/>
+                                      )
+                }
+            </div>
         </div>
     );
 
+}
+
+
+function TodoItem( { id, item, isComplete } ) {
+    return (
+        <div>
+            <input type="checkbox" 
+                   value={id} 
+                   checked={isComplete}
+                   />
+            <label htmlFor={id}>{item}</label>
+            <span>🗑</span>
+        </div>
+    );
 }
