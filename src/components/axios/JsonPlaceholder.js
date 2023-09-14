@@ -6,6 +6,21 @@ export default function JsonPlaceholder() {
     const [posts, setPosts] = useState([])
     const [status, setStatus] = useState(0)
 
+    axios.interceptors.request.use((config) => {
+        console.log(config)
+        return config
+    }, (error) => {
+        console.log(error)
+        return Promise.reject(error)
+    })
+    axios.interceptors.response.use((response) => {
+        console.log(response)
+        return response
+    }, (error) => {
+        console.log(error)
+        return Promise.reject(error)
+    })
+
     function getAllPosts() {
         const readPostsUrl = "https://jsonplaceholder.typicode.com/posts"
         axios.get(readPostsUrl)
@@ -106,4 +121,29 @@ function Buttons( {getAllPosts, getOnePost, addNewPost} ) {
         </div>
     );
 
+}
+
+function Spinner() {
+
+    const style = {
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex:999,
+        position: "fixed",
+        top: 0,
+        left: 0,
+        bottom: 0,
+        right: 0
+    }
+
+    const imgStyle = {
+        width: "150px"
+    }
+
+    return (
+        <div style={style}>
+            <img style={imgStyle} src="https://global.discourse-cdn.com/business7/uploads/streamlit/original/2X/2/247a8220ebe0d7e99dbbd31a2c227dde7767fbe1.gif" />
+        </div>
+    )
 }
