@@ -16,7 +16,11 @@ export default function ComplexReducerHook() {
             <div>{todoItems.count}개의 할 일이 등록되어 있습니다.</div>
             <div>{todoItems.completeTodoCount}개의 할 일이 완료되었습니다.</div>
             <div>{todoItems.count - todoItems.completeTodoCount}개의 미완료된 할일이 남아있습니다.</div>
-            
+
+            <div>
+                <input type="text" ref={todoRef} />
+                <button onClick={() => dispatch({type: "add-item", payload: todoRef.current.value})}>등록</button>
+            </div>
         </div>
     );
 

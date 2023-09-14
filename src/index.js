@@ -14,11 +14,12 @@ import InlineApp from './components/style/InlineApp';
 import RefComponent from './components/hooks/UseRefTest';
 import EffectComponent from './components/hooks/UseEffectTest';
 import ReducerComponent from './components/hooks/ReducerComponent';
+import ComplexReducerHook from './components/hooks/ComplexReducerHook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <React.StrictMode>
-    <ReducerComponent />
+    <ComplexReducerHook />
    </React.StrictMode>
 );
 
