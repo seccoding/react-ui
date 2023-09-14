@@ -15,11 +15,12 @@ import RefComponent from './components/hooks/UseRefTest';
 import EffectComponent from './components/hooks/UseEffectTest';
 import ReducerComponent from './components/hooks/ReducerComponent';
 import ComplexReducerHook from './components/hooks/ComplexReducerHook';
+import JsonPlaceholder from './components/axios/JsonPlaceholder';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <React.StrictMode>
-    <ComplexReducerHook />
+    <JsonPlaceholder />
    </React.StrictMode>
 );
 
