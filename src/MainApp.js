@@ -10,8 +10,8 @@ export default function MainApp() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={ <BoardList item={item} /> } />
-                <Route path="/write" element={ <Write item={item} setItem={setItem}/> } />
-                <Route path="/view/:num" element={ <Detail item={item} /> } />
+                <Route path="/write" element={ <Write item={item} setItem={setItem} /> } />
+                <Route path="/view/:num" element={ <Detail item={item} setItem={setItem} /> } />
             </Routes>
         </BrowserRouter>
     );

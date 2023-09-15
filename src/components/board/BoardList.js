@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 
 export default function BoardList( {item} ) {
@@ -46,10 +46,23 @@ function Row( {num, title, author, viewCount} ) {
 
 }
 
-export function Detail( {item} ) {
+export function Detail( {item, setItem} ) {
 
     // /view/:num 의 값을 받아옴.
     const {num} = useParams()
+    
+    useEffect(() => {
+        const copyItem = [...item]
+        copyItem.map((each) => {
+            if (each.num == num) {
+                each.viewCount += 1
+                return {...each}
+            }
+            return each
+        })
+        setItem(copyItem)
+    }, [])
+
     const detailItem = item.filter((each) => each.num == num)[0]
 
     return (
