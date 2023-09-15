@@ -8,11 +8,10 @@ export const BoardSlice = createSlice({
             state.push( action.payload )
         },
         read(state, action) {
-            state = state.map((board) => {
+            state.forEach((board) => {
                 if (board.num === parseInt(action.payload)) {
-                    return {...board, viewCount: board.viewCount + 1}
+                    board.viewCount += 1
                 }
-                return board
             })
         }
     }
