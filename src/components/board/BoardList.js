@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
 
 export default function BoardList( {item} ) {
 
@@ -25,8 +25,10 @@ export default function BoardList( {item} ) {
                 </tbody>
             </table>
             <div>
-                <Link to="/write">글쓰기</Link>
+                <Link to="/articles/write">글쓰기</Link>
             </div>
+            { /*Detail Component (Route 내부의 Route Component)*/ }
+            <Outlet />
         </div>
     );
 }
@@ -37,7 +39,7 @@ function Row( {num, title, author, viewCount} ) {
         <tr>
             <td>{num}</td>
             <td>
-                <Link to={"/view/" + num}>{title}</Link>
+                <Link to={"/articles/" + num}>{title}</Link>
             </td>
             <td>{author}</td>
             <td>{viewCount}</td>
@@ -83,7 +85,7 @@ export function Detail( {item, setItem} ) {
                 내용: {detailItem.desc}
             </div>
             <div>
-                <Link to="/">목록으로 돌아가기</Link>
+                <Link to="/articles">목록으로 돌아가기</Link>
             </div>
         </div>
     );
@@ -108,7 +110,7 @@ export function Write( {item, setItem} ) {
             viewCount: 0
         }] )
 
-        navigate("/")
+        navigate("/articles")
     }
 
     return (
@@ -124,7 +126,7 @@ export function Write( {item, setItem} ) {
             </div>
             <div>
                 <button onClick={save}>저장</button>
-                <Link to="/">목록으로 돌아가기</Link>
+                <Link to="/articles">목록으로 돌아가기</Link>
             </div>
         </div>
     );
