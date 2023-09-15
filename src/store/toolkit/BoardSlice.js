@@ -5,7 +5,7 @@ export const BoardSlice = createSlice({
     initialState: [],
     reducers: {
         regist(state, action) {
-            state.push( action )
+            state.push( action.payload )
         },
         read(state, action) {
             state = state.map((board) => {

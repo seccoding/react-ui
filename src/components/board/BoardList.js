@@ -1,12 +1,14 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Outlet, useNavigate, useParams } from "react-router-dom";
+import { BoardSlice } from "../../store/toolkit/BoardSlice";
 
 export default function BoardList() {
 
     // ReduxStore 에서 state를 받아오는 hook
-    const item = useSelector( (state) => [...state] )
-
+    const item = useSelector( (state) => [...state.board] )
+    console.log(item)
+    
     return (
         <div>
             <table>
@@ -57,7 +59,7 @@ export function Detail() {
     // /view/:num 의 값을 받아옴.
     const {num} = useParams()
     
-    const item = useSelector( (state) => [...state] )
+    const item = useSelector( (state) => [...state.board] )
     // ReduxStore의 State를 변경하기 위한 Dispatch가 생성.
     const dispatch = useDispatch()
 
@@ -66,7 +68,8 @@ export function Detail() {
         // ReduxStore의 state값을 갱신하려면
         // ReduxReducer에게 state값 갱신요청을 해야한다.
         // ReduxReducer에게 갱신 요청을 하기 위해 dispath가 필요하다.
-        dispatch( { type: "read", payload: num } )
+        // dispatch( { type: "read", payload: num } )
+        dispatch(BoardSlice.actions.read(num))
     }, [])
 
     // useEffect(() => {
@@ -116,7 +119,7 @@ export function Write() {
     const descRef = useRef()
     const navigate = useNavigate()
 
-    const item = useSelector(state => [...state])
+    const item = useSelector(state => [...state.board])
     const dispatch = useDispatch()
 
     function save() {
@@ -128,13 +131,20 @@ export function Write() {
         //     viewCount: 0
         // }] )
 
-        dispatch( { type: "regist", payload: {
+        // dispatch( { type: "regist", payload: {
+        //     num: item.length + 1,
+        //     title: titleRef.current.value,
+        //     author: authorRef.current.value,
+        //     desc: descRef.current.value,
+        //     viewCount: 0
+        // } } )
+        dispatch(BoardSlice.actions.regist({
             num: item.length + 1,
             title: titleRef.current.value,
             author: authorRef.current.value,
             desc: descRef.current.value,
             viewCount: 0
-        } } )
+        }))
 
         navigate("/articles")
     }
