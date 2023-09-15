@@ -5,14 +5,15 @@ import BoardList, { Detail, Write } from "./components/board/BoardList";
 import ComplexReducerHook from "./components/hooks/ComplexReducerHook";
 import HelloReact from "./components/hello/HelloReact";
 import { Provider } from "react-redux";
-import ReduxStore from "./store/redux/ReduxStore";
+// import ReduxStore from "./store/redux/ReduxStore";
+import { ToolkitStore } from "./store/toolkit/ToolkitStore";
 
 export default function MainApp() {
 
-    const reduxStore = ReduxStore()()
+    // const reduxStore = ReduxStore()()
 
     return (
-        <Provider store={reduxStore}>
+        <Provider store={ ToolkitStore }>
             <BrowserRouter>
                 <div id="grid">
                     <div id="header">여기는 Header입니다.</div>
