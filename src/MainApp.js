@@ -2,15 +2,12 @@ import "./MainApp.css"
 
 import { BrowserRouter, Link, Route, Routes } from "react-router-dom";
 import BoardList, { Detail, Write } from "./components/board/BoardList";
-import { useState } from "react";
 import ComplexReducerHook from "./components/hooks/ComplexReducerHook";
 import HelloReact from "./components/hello/HelloReact";
 import { Provider } from "react-redux";
 import ReduxStore from "./store/redux/ReduxStore";
 
 export default function MainApp() {
-
-    const [item, setItem] = useState([])
 
     const reduxStore = ReduxStore()()
 
@@ -28,9 +25,9 @@ export default function MainApp() {
                     </div>
                     <div>
                         <Routes>
-                            <Route path="/articles/*" element={ <BoardList item={item} /> }>
-                                <Route path=":num" element={ <Detail item={item} setItem={setItem} /> } />
-                                <Route path="write" element={ <Write item={item} setItem={setItem} /> } />
+                            <Route path="/articles/*" element={ <BoardList /> }>
+                                <Route path=":num" element={ <Detail /> } />
+                                <Route path="write" element={ <Write /> } />
                             </Route>
                             <Route path="/todo" element={ <ComplexReducerHook /> } />
                             <Route path="/hello" element={ <HelloReact /> } />
