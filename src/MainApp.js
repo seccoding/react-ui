@@ -5,33 +5,39 @@ import BoardList, { Detail, Write } from "./components/board/BoardList";
 import { useState } from "react";
 import ComplexReducerHook from "./components/hooks/ComplexReducerHook";
 import HelloReact from "./components/hello/HelloReact";
+import { Provider } from "react-redux";
+import ReduxStore from "./store/redux/ReduxStore";
 
 export default function MainApp() {
 
     const [item, setItem] = useState([])
 
+    const reduxStore = ReduxStore()()
+
     return (
-        <BrowserRouter>
-            <div id="grid">
-                <div id="header">여기는 Header입니다.</div>
-                <div id="aside">
-                    <ul>
-                        <li><Link to="/articles">게시판</Link></li>
-                        <li><Link to="/todo">Todo</Link></li>
-                        <li><Link to="/hello">HelloReact</Link></li>
-                    </ul>
+        <Provider store={reduxStore}>
+            <BrowserRouter>
+                <div id="grid">
+                    <div id="header">여기는 Header입니다.</div>
+                    <div id="aside">
+                        <ul>
+                            <li><Link to="/articles">게시판</Link></li>
+                            <li><Link to="/todo">Todo</Link></li>
+                            <li><Link to="/hello">HelloReact</Link></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <Routes>
+                            <Route path="/articles/*" element={ <BoardList item={item} /> }>
+                                <Route path=":num" element={ <Detail item={item} setItem={setItem} /> } />
+                                <Route path="write" element={ <Write item={item} setItem={setItem} /> } />
+                            </Route>
+                            <Route path="/todo" element={ <ComplexReducerHook /> } />
+                            <Route path="/hello" element={ <HelloReact /> } />
+                        </Routes>
+                    </div>
                 </div>
-                <div>
-                    <Routes>
-                        <Route path="/articles/*" element={ <BoardList item={item} /> }>
-                            <Route path=":num" element={ <Detail item={item} setItem={setItem} /> } />
-                            <Route path="write" element={ <Write item={item} setItem={setItem} /> } />
-                        </Route>
-                        <Route path="/todo" element={ <ComplexReducerHook /> } />
-                        <Route path="/hello" element={ <HelloReact /> } />
-                    </Routes>
-                </div>
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
+        </Provider>
     );
 }
