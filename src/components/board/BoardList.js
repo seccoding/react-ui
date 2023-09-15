@@ -36,7 +36,9 @@ function Row( {num, title, author, viewCount} ) {
     return (
         <tr>
             <td>{num}</td>
-            <td>{title}</td>
+            <td>
+                <Link to={"/view/" + num}>{title}</Link>
+            </td>
             <td>{author}</td>
             <td>{viewCount}</td>
         </tr>
