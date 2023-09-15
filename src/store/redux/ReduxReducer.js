@@ -24,8 +24,9 @@ export default function ReduxReducer(stateInStore = [], action) {
     }
     // 게시글의 조회수를 증가시키기
     else if (actionType === "read") {
-        newState.map( article => {
-            if (article.num === action.payload) {
+        newState = newState.map( article => {
+            
+            if (article.num === parseInt(action.payload)) {
                 return { ...article, viewCount: article.viewCount + 1 }
             }
             return {...article}
