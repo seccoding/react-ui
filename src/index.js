@@ -1,26 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import TableApp from './TableApp';
-import ArticleApp from './ArticleApp';
-import Buttons from './components/events/Buttons';
-import PersonApp from './components/events/props/PersonApp';
-import InputApp from './components/state/InputApp';
-import StepperApp from './components/state/StepperApp';
-import ContactApp from './components/contact/ContactApp';
-import InlineApp from './components/style/InlineApp';
-import RefComponent from './components/hooks/UseRefTest';
-import EffectComponent from './components/hooks/UseEffectTest';
-import ReducerComponent from './components/hooks/ReducerComponent';
-import ComplexReducerHook from './components/hooks/ComplexReducerHook';
-import JsonPlaceholder from './components/axios/JsonPlaceholder';
+import MainApp from './MainApp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
    <React.StrictMode>
-    <JsonPlaceholder />
+    <MainApp />
    </React.StrictMode>
 );
 
