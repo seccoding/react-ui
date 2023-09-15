@@ -1,14 +1,12 @@
-import { useReducer, useRef } from "react";
-import { TodoReducer } from "./reducer/TodoReducer";
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { TodoSlice } from "../../store/toolkit/TodoSlice";
 
 export default function ComplexReducerHook() {
 
     const todoRef = useRef()
-    const [todoItems, dispatch] = useReducer(TodoReducer, {
-        count: 0,
-        todos: [],
-        completeTodoCount: 0
-    })
+    const todoItems = useSelector(state => state.todo)
+    const dispatch = useDispatch()
 
     return (
         <div className="todoWrapper">
@@ -20,7 +18,7 @@ export default function ComplexReducerHook() {
             <div>
                 <input type="text" ref={todoRef} />
                 <button onClick={() => {
-                    dispatch({type: "add-item", payload: todoRef.current.value})
+                    dispatch(TodoSlice.actions.addItem({item : todoRef.current.value}))
                     todoRef.current.value = ""
                     todoRef.current.focus()
                 }}>등록</button>
@@ -34,8 +32,7 @@ export default function ComplexReducerHook() {
                             <TodoItem key={value.id}
                                       id={value.id}
                                       item={value.item}
-                                      isComplete={value.isComplete}
-                                      dispatch={dispatch} />)
+                                      isComplete={value.isComplete} />)
                 }
             </div>
         </div>
@@ -44,12 +41,14 @@ export default function ComplexReducerHook() {
 }
 
 
-function TodoItem( { id, item, isComplete, dispatch } ) {
+function TodoItem( { id, item, isComplete } ) {
 
     const itemStyle = {
         color: !isComplete ? "#333" : "#CCC",
         textDecoration: !isComplete ? "none" : "line-through"
     }
+
+    const dispatch = useDispatch()
 
     return (
         <div>
@@ -57,10 +56,10 @@ function TodoItem( { id, item, isComplete, dispatch } ) {
                    value={id} 
                    id={id}
                    checked={isComplete}
-                   onChange={() => dispatch({type: "complete", payload: id })}
+                   onChange={() => dispatch(TodoSlice.actions.complete(id))}
                    />
             <label htmlFor={id} style={itemStyle}>{item}</label>
-            <span onClick={() => dispatch({type: "delete-item", payload: id})}>🗑</span>
+            <span onClick={() => dispatch(TodoSlice.actions.deleteItem(id))}>🗑</span>
         </div>
     );
 }
